@@ -2,4 +2,6 @@ table,
 th,
 td {
   border: 1px solid black;
+  border-spacing: 10px;
+  border-collapse: separate;
 }
