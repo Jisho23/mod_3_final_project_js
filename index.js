@@ -22,7 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function startGame(event) {
   event.preventDefault();
-  document.getElementById("characterInfo").innerHTML = `<table>
+  document.getElementById(
+    "characterInfo"
+  ).innerHTML = `<h3>Character Info:</h3><table>
     <tr>
     <td id='name'></td>
     <td id='hp'></td>
@@ -44,6 +46,20 @@ function startGame(event) {
   document.getElementById(
     "attack"
   ).innerHTML = `Attack Power: ${characterChoice.attack}`;
+  document.getElementById(
+    "characterInfo"
+  ).innerHTML += `<h4>Abilities</h4><ul id='abilities'></ul>`;
+  let abilities = characterChoice.abilities;
+  if (abilities > 0) {
+    abilities.forEach(function(ability) {
+      document.getElementById(
+        "abilities"
+      ).innerHTML += `<li>${ability.name}</li>`;
+    });
+  } else {
+    document.getElementById("abilities").innerHTML = `<li> None ;_; </li>`;
+  }
+
   document.getElementById("characterSelectForm").innerHTML = "";
 }
 // character info
@@ -56,6 +72,7 @@ class Character {
     this.hp = json.hp;
     this.pp = json.pp;
     this.attack = json.attack;
+    this.abilities = json.abilities;
     characters.push(this);
   }
 }
@@ -65,7 +82,7 @@ function populateCharacterSelect() {
     .then(response => response.json())
     .then(function(json) {
       json.forEach(function(character) {
-        let newOption = `<<option value="${character.id}">${character.name}</option>>`;
+        let newOption = `<option value="${character.id}">${character.name}</option>>`;
         document.getElementById("characterDropdown").innerHTML += newOption;
         let newCharacter = new Character(character);
       });
