@@ -11,9 +11,8 @@ function hitCharacter(el) {
     $("#characterInfo")[0].innerHTML = characterTable;
     displayCharacterInfo(currentCharacter);
   }, 500);
+  toggler();
 }
-
-function happy(el) {}
 
 const showTextHit = function(message, index) {
   if (index < message.length) {
@@ -53,7 +52,9 @@ const showTextRunAway = function(message, index) {
           update();
         } else {
           pickAMonster();
+          textBox.innerHTML += `<br>`;
           showRandomText(`A ${currentMonster.name} draws near!`, 0);
+          toggler();
         }
       }
     }, 50);

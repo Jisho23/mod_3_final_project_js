@@ -28,4 +28,12 @@ const characterTable = `<h3>Character Info:</h3><div id='characterImage'></div><
   </table>
 </table>`;
 
-let textBox = $("#textArea")[0];
+let textBox = "";
+
+let toggler = function() {
+  if ($("#battleColumn")[0].data === "toggled") {
+    $("#battleColumn")[0].data = "";
+  } else {
+    $("#battleColumn")[0].data = "toggled";
+  }
+};

@@ -9,14 +9,10 @@ function renderBattleOptions() {
   <button type="button" name="button" class='button is-small is-danger' value='runAway'>Run away!</button>`;
   let buttons = $(".button");
   buttons = [...buttons];
-  buttons.forEach(function(button) {
-    button.addEventListener("click", function(event) {
-      performAction(event.target.value);
-    });
-  });
 }
 
 function performAction(value) {
+  toggler();
   if (value === "attack") {
     currentMonster.hp -= currentCharacter.attack;
     if (currentMonster.hp < 0) {
@@ -33,6 +29,7 @@ function performAction(value) {
       renderAbility();
     } else {
       alert("You have no ability!");
+      toggler();
     }
   } else if (value === "runAway") {
     runAway();
@@ -43,7 +40,7 @@ function renderAbility() {
   $("#battleArea")[0].innerHTML = "";
   let abilitiesHTML = [];
   currentCharacter.abilities.forEach(function(ability) {
-    let button = `<button type="button" name="button" class="button is-small is-link" value="${ability.name}">${ability.name}</button>`;
+    let button = `<button type="button" name="abilityButton" class="button is-small is-link" value="${ability.name}">${ability.name}</button>`;
     abilitiesHTML.push(button);
   });
   $("#battleArea")[0].innerHTML = abilitiesHTML.join("");
@@ -61,12 +58,20 @@ function performAbility(value) {
     return ability.name === value;
   });
   if (currentCharacter.pp < ability.cost) {
-    alert("The spell fizzles because you don't have enough ability power!");
+    textBox.innerHTML += `<br>`;
+    showRandomText(
+      "The spell fizzles because you don't have enough ability power!",
+      0
+    );
     renderBattleOptions();
+    toggler();
   } else {
     currentMonster.hp -= ability.damage;
     currentCharacter.pp -= ability.cost;
     currentCharacter.hp += ability.recover;
+    if (currentMonster.hp < 0) {
+      currentMonster.hp = 0;
+    }
     displayMonster(currentMonster);
     displayCharacterInfo(currentCharacter);
     if (ability.damage > 0) {
@@ -106,6 +111,7 @@ function highScore() {
 }
 
 function clearScreen() {
+  $("battleColumn")[0].innerHTML = "";
   $("#battleArea")[0].innerHTML = "";
   $("#monsterInfo")[0].innerHTML = "";
 }

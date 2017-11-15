@@ -70,6 +70,7 @@ function getExpReward() {
   renderBattleOptions();
   textBox.innerHTML = "";
   showRandomText(`A ${currentMonster.name} draws near!`, 0);
+  toggler();
 }
 
 function monsterAttacks() {
