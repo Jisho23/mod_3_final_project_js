@@ -49,28 +49,34 @@ function displayMonster(monster) {
   </table></div>`;
 }
 
-function monsterAttacks() {
-  currentCharacter.hp -= currentMonster.attack;
-  alert(
-    `The ${currentMonster.name} attacked! You took ${currentMonster.attack} points of damage!`
-  );
-  $("#characterInfo")[0].innerHTML = characterTable;
-  displayCharacterInfo(currentCharacter);
-}
-
 function isMonsterDead() {
   if (currentMonster.hp < 1) {
-    alert(
-      `You defeated the ${currentMonster.name}! You gained ${currentMonster.exp} experience points!`
+    textBox.innerHTML += `<br>`;
+    showDefeatedText(
+      `You defeated the ${currentMonster.name}! Your exp went up by ${currentMonster.exp}!`,
+      0
     );
-    currentCharacter.exp += currentMonster.exp;
-    $("#characterInfo")[0].innerHTML = characterTable;
-    displayCharacterInfo(currentCharacter);
-    pickAMonster();
-    renderBattleOptions();
-    alert(`Here comes a ${currentMonster.name}!`);
   } else {
     monsterAttacks();
     renderBattleOptions();
   }
+}
+
+function getExpReward() {
+  currentCharacter.exp += currentMonster.exp;
+  $("#characterInfo")[0].innerHTML = characterTable;
+  displayCharacterInfo(currentCharacter);
+  pickAMonster();
+  renderBattleOptions();
+  textBox.innerHTML = "";
+  showRandomText(`A ${currentMonster.name} draws near!`, 0);
+}
+
+function monsterAttacks() {
+  currentCharacter.hp -= currentMonster.attack;
+  textBox.innerHTML += `<br>`;
+  showTextDamage(
+    `The ${currentMonster.name} attacked! You took ${currentMonster.attack} points of damage!`,
+    0
+  );
 }

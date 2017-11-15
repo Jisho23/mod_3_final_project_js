@@ -19,12 +19,15 @@ function renderBattleOptions() {
 function performAction(value) {
   if (value === "attack") {
     currentMonster.hp -= currentCharacter.attack;
+    if (currentMonster.hp < 0) {
+      currentMonster.hp = 0;
+    }
     displayMonster(currentMonster);
-    getHit($("#monsterImage")[0]);
-    alert(
-      `You attacked ${currentMonster.name}! It took ${currentCharacter.attack} points of damage!`
+    textBox.innerHTML = "";
+    showTextHit(
+      `You attacked the ${currentMonster.name}! It took ${currentCharacter.attack} points of damage!`,
+      0
     );
-    update();
   } else if (value === "ability") {
     if (currentCharacter.abilities.length > 0) {
       renderAbility();
@@ -64,30 +67,28 @@ function performAbility(value) {
     currentMonster.hp -= ability.damage;
     currentCharacter.pp -= ability.cost;
     currentCharacter.hp += ability.recover;
-    getHit($("#monsterImage")[0]);
     displayMonster(currentMonster);
     displayCharacterInfo(currentCharacter);
     if (ability.damage > 0) {
-      alert(
-        `You used ${ability.name} on the ${currentMonster.name}! It took ${ability.damage} points of damage!`
+      textBox.innerHTML = "";
+      showTextHit(
+        `You used ${ability.name} on the ${currentMonster.name}! It took ${ability.damage} points of damage!`,
+        0
       );
     }
     if (ability.recover > 0) {
       alert(`You recovered ${ability.recover} hit points!`);
     }
-    update();
   }
 }
 
 function runAway() {
+  textBox.innerHTML = "";
   let number = Math.floor(Math.random() * 5);
   if (number === 4) {
-    alert("You failed to run away!");
-    update();
+    showTextRunAway("You failed to run away!", 0);
   } else {
-    alert("You managed to escape!");
-    pickAMonster();
-    alert(`Here comes a ${currentMonster.name}!`);
+    showTextRunAway("You managed to escape!", 0);
   }
 }
 

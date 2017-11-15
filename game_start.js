@@ -11,5 +11,6 @@ function startGame(event) {
   pickAMonster();
   $("#characterSelectForm")[0].innerHTML = "";
   $("#highScoreArea")[0].innerHTML = "";
+  showRandomText(`A ${currentMonster.name} draws near!`, 0);
   battle();
 }
