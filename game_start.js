@@ -10,5 +10,6 @@ function startGame(event) {
   displayCharacterInfo(characterChoice);
   pickAMonster();
   $("#characterSelectForm")[0].innerHTML = "";
+  $("#highScoreArea")[0].innerHTML = "";
   battle();
 }

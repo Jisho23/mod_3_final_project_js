@@ -85,6 +85,7 @@ function runAway() {
   } else {
     alert("You managed to escape!");
     pickAMonster();
+    alert(`Here comes a ${currentMonster.name}!`);
   }
 }
 

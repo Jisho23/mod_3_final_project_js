@@ -8,7 +8,7 @@ const herokuCharacters =
 const herokuHighScores =
   "https://cryptic-inlet-42078.herokuapp.com/api/v1/highscores";
 const test = "";
-const characterTable = `<h3>Character Info:</h3><table class='table is-narrow is-bordered' id='characterDisplay'>
+const characterTable = `<h3>Character Info:</h3><div id='characterImage'></div><table class='table is-narrow is-bordered' id='characterDisplay'>
 <td>
   <table id='characterStatTable'>
   <tr>

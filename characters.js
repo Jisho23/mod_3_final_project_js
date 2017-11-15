@@ -12,6 +12,7 @@ const Character = (() => {
       this.attack = json.attack;
       this.abilities = json.abilities;
       this.exp = 0;
+      this.image = json.image;
       characters.push(this);
     }
     static all() {
@@ -34,6 +35,9 @@ function populateCharacterSelect() {
 
 function displayCharacterInfo(characterChoice) {
   $("#characterInfo")[0].innerHTML = characterTable;
+  $(
+    "#characterImage"
+  )[0].innerHTML = `<img src='${characterChoice.image}' height="100"></img>`;
   $("#name")[0].innerHTML = `Character Class: ${characterChoice.name}`;
   $("#hp")[0].innerHTML = `Max HP: ${characterChoice.hp} `;
   $("#PP")[0].innerHTML = `Max PP: ${characterChoice.pp}`;
