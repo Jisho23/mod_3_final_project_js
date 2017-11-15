@@ -4,9 +4,9 @@ function battle() {
 
 function renderBattleOptions() {
   $("#battleArea")[0].innerHTML = `
-  <button type="button" name="button" class='button is-small' value='attack'>Attack</button>
-  <button type="button" name="button" class='button is-small' value='ability'>Use Ability</button>
-  <button type="button" name="button" class='button is-small' value='runAway'>Run away!</button>`;
+  <button type="button" name="button" class='button is-small is-primary' value='attack'>Attack</button>
+  <button type="button" name="button" class='button is-small is-warning' value='ability'>Use Ability</button>
+  <button type="button" name="button" class='button is-small is-danger' value='runAway'>Run away!</button>`;
   let buttons = $(".button");
   buttons = [...buttons];
   buttons.forEach(function(button) {
@@ -40,7 +40,7 @@ function renderAbility() {
   $("#battleArea")[0].innerHTML = "";
   let abilitiesHTML = [];
   currentCharacter.abilities.forEach(function(ability) {
-    let button = `<button type="button" name="button" class="button is-small" value="${ability.name}">${ability.name}</button>`;
+    let button = `<button type="button" name="button" class="button is-small is-link" value="${ability.name}">${ability.name}</button>`;
     abilitiesHTML.push(button);
   });
   $("#battleArea")[0].innerHTML = abilitiesHTML.join("");

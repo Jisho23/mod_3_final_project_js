@@ -48,3 +48,7 @@ td {
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
+
+#highscore-form {
+  align-content: center;
+}

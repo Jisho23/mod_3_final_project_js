@@ -10,24 +10,51 @@
     <title></title>
   </head>
   <body>
-    <form class="" action="index.html" method="post" id='characterSelectForm'>
-      <select class="" name="" id="characterDropdown">
+
+    <section class="hero is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Dueling Demons
+          </h1>
+        </div>
+      </div>
+    </section>
+
+
+    <form class="form" action="index.html" method="post" id='characterSelectForm'>
+      <select class="select is-medium is-primary" name="" id="characterDropdown">
       </select>
-      <input type="submit" name="Choose Character" value="submit" id='characterSubmit'>
+      <input type="submit" name="Choose Character" value="Start Battle!" class='button is-medium is-warning' id='characterSubmit'>
     </form>
     <div id="styling-div" class="tile is-parent">
-      <div id='characterInfo' class= 'tile is-child'>
+      <div class="columns">
+
+
+      <div class="column">
+        <div id='characterInfo' class= 'tile is-child'>
+        </div>
       </div>
-      <div class="tile is-child" id='monsterInfo'>
+
+      <div class="column">
+        <div class="tile is-child" id='monsterInfo'>
+        </div>
       </div>
-      <div class="tile is-child is-vertical" id='battleArea'>
-      </div>
-      <div class="tile is-child" id= 'highscore-form'>
+
+      <div class="column">
+        <div class="tile is-child is-vertical" id='battleArea'>
+        </div>
       </div>
     </div>
+    </div>
+
+
+      <div class="tile is-child" id= 'highscore-form'>
+      </div>
+
     <div class="tile is-child" id='highScoreArea'>
-      <h3>High Scores</h3>
-      <table id='highScoreTable'>
+      <table id='highScoreTable' class='table is-hoverable is-striped is-narrow'>
+        <th class ='thead'>High Scores</th>
 
       </table>
     </div>

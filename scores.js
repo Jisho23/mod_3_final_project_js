@@ -1,9 +1,11 @@
 function renderHighScoreForm() {
   $("#highscore-form")[0].innerHTML = `<h3> Enter your Name</h3>
-  <form class='' id='enter-name' method='post'>
+  <form class='form' id='enter-name' method='post'>
   <input type='hidden' id='score' name='score' value=${currentCharacter.exp}>
-  <input type='text' id='scoreName' name='name'>
-  <input type='submit' value='submit' name='submit score'>`;
+  <div class="control has-icons-left">
+  <input class= 'input is-success' placeholder='your name' type='text' id='scoreName' name='name'>
+    </div>
+  <input class='button is-sucess'type='submit' value='submit' name='submit score'>`;
 
   $("#highscore-form")[0].addEventListener("submit", function(event) {
     event.preventDefault();
@@ -42,6 +44,6 @@ function getHighScores() {
 }
 
 function createScoreOnTable(score) {
-  let newScore = `<tr><td>Name: ${score.name}</td><td>Score: ${score.score}</td></tr>`;
+  let newScore = `<tr class='tr'><td class='td'>${score.name} - ${score.score} points</td></tr>`;
   $("#highScoreTable")[0].innerHTML += newScore;
 }
