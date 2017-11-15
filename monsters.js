@@ -65,12 +65,19 @@ function isMonsterDead() {
 function getExpReward() {
   currentCharacter.exp += currentMonster.exp;
   $("#characterInfo")[0].innerHTML = characterTable;
-  displayCharacterInfo(currentCharacter);
-  pickAMonster();
-  renderBattleOptions();
-  textBox.innerHTML = "";
-  showRandomText(`A ${currentMonster.name} draws near!`, 0);
-  toggler();
+  if (
+    currentCharacter.exp >=
+    currentCharacter.level * currentCharacter.level * 10
+  ) {
+    levelUp();
+  } else {
+    displayCharacterInfo(currentCharacter);
+    pickAMonster();
+    renderBattleOptions();
+    textBox.innerHTML = "";
+    showRandomText(`A ${currentMonster.name} draws near!`, 0);
+    toggler();
+  }
 }
 
 function monsterAttacks() {

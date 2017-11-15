@@ -12,6 +12,7 @@ const Character = (() => {
       this.attack = json.attack;
       this.abilities = json.abilities;
       this.exp = 0;
+      this.level = 1;
       this.image = json.image;
       characters.push(this);
     }
@@ -63,3 +64,13 @@ function isPlayerDead() {
     return false;
   }
 }
+
+const levelUp = function() {
+  currentCharacter = initialCharacter;
+  currentCharacter.attack += 1;
+  currentCharacter.hp += 3;
+  currentCharacter.level += 1;
+  displayCharacterInfo(currentCharacter);
+  textBox.innerHTML = "";
+  levelUpText(`You have progressed to level ${currentCharacter.level}!`, 0);
+};

@@ -99,10 +99,6 @@ function runAway() {
 
 function update() {
   isMonsterDead();
-  if (isPlayerDead()) {
-    alert("You died!");
-    highScore();
-  }
 }
 
 function highScore() {

@@ -30,7 +30,7 @@ const showTextHit = function(message, index) {
           getHit($("#monsterImage")[0]);
         }, 500);
       }
-    }, 50);
+    }, 30);
   }
 };
 
@@ -44,7 +44,7 @@ const showTextDamage = function(message, index) {
           hitCharacter($("#characterImage")[0]);
         }, 500);
       }
-    }, 50);
+    }, 30);
   }
 };
 
@@ -63,7 +63,7 @@ const showTextRunAway = function(message, index) {
           toggler();
         }
       }
-    }, 50);
+    }, 30);
   }
 };
 
@@ -72,7 +72,25 @@ const showRandomText = function(message, index) {
     textBox.innerHTML += message[index++];
     setTimeout(function() {
       showRandomText(message, index);
-    }, 50);
+    }, 30);
+  }
+};
+
+const levelUpText = function(message, index) {
+  if (index < message.length) {
+    textBox.innerHTML += message[index++];
+    setTimeout(function() {
+      levelUpText(message, index);
+      if (index === message.length) {
+        setTimeout(function() {
+          pickAMonster();
+          renderBattleOptions();
+          textBox.innerHTML += `<br>`;
+          showRandomText(`A ${currentMonster.name} draws near!`, 0);
+          toggler();
+        }, 750);
+      }
+    }, 30);
   }
 };
 
@@ -86,6 +104,6 @@ const showDefeatedText = function(message, index) {
           getExpReward();
         }, 1000);
       }
-    }, 50);
+    }, 30);
   }
 };
