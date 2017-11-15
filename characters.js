@@ -1,4 +1,5 @@
 let currentCharacter = {};
+let initialCharacter = {};
 
 const Character = (() => {
   const characters = [];
@@ -31,7 +32,6 @@ function populateCharacterSelect() {
 }
 
 function displayCharacterInfo(characterChoice) {
-  currentCharacter = characterChoice;
   $("#name")[0].innerHTML = `Character Class: ${characterChoice.name}`;
   $("#hp")[0].innerHTML = `Max HP: ${characterChoice.hp} `;
   $("#PP")[0].innerHTML = `Max PP: ${characterChoice.pp}`;

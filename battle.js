@@ -17,5 +17,104 @@ function renderBattleOptions() {
 }
 
 function performAction(value) {
-  alert(`${value}`);
+  if (value === "attack") {
+    currentMonster.hp -= currentCharacter.attack;
+    displayMonster(currentMonster);
+    alert(
+      `You attacked ${currentMonster.name}! It took ${currentCharacter.attack} points of damage!`
+    );
+    update();
+  } else if (value === "ability") {
+    if (currentCharacter.abilities.length > 0) {
+      renderAbility();
+    } else {
+      alert("You have no ability!");
+    }
+  } else if (value === "runAway") {
+    runAway();
+  }
+}
+
+function renderAbility() {
+  $("#battleArea")[0].innerHTML = "";
+  let abilitiesHTML = [];
+  currentCharacter.abilities.forEach(function(ability) {
+    let button = `<button type="button" name="button" class="ability" value="${ability.name}">${ability.name}</button>`;
+    abilitiesHTML.push(button);
+  });
+  $("#battleArea")[0].innerHTML = abilitiesHTML.join("");
+  let buttons = $(".ability");
+  buttons = [...buttons];
+  buttons.forEach(function(button) {
+    button.addEventListener("click", function(ev) {
+      performAbility(ev.target.value);
+    });
+  });
+}
+
+function performAbility(value) {
+  let ability = currentCharacter.abilities.find(function(ability) {
+    return ability.name === value;
+  });
+  if (currentCharacter.pp < ability.cost) {
+    alert("The spell fizzles because you don't have enough ability power!");
+    renderBattleOptions();
+  } else {
+    currentMonster.hp -= ability.damage;
+    currentCharacter.pp -= ability.cost;
+    currentCharacter.hp += ability.recover;
+    displayMonster(currentMonster);
+    $("#characterInfo")[0].innerHTML = characterTable;
+    displayCharacterInfo(currentCharacter);
+    if (ability.damage > 0) {
+      alert(
+        `You used ${ability.name} on the ${currentMonster.name}! It took ${ability.damage} points of damage!`
+      );
+    }
+    if (ability.recover > 0) {
+      alert(`You recovered ${ability.recover} hit points!`);
+    }
+    update();
+  }
+}
+
+function runAway() {
+  let number = Math.floor(Math.random() * 5);
+  if (number === 4) {
+    alert("You failed to run away!");
+    update();
+  } else {
+    alert("You managed to escape!");
+    pickAMonster();
+  }
+}
+
+function update() {
+  if (currentMonster.hp <= 0) {
+    alert(
+      `You defeated the ${currentMonster.name}! You gained ${currentMonster.exp} experience points!`
+    );
+    pickAMonster();
+    renderBattleOptions();
+    alert(`Here comes a ${currentMonster.name}!`);
+  } else {
+    monsterAttacks();
+    renderBattleOptions();
+  }
+}
+
+function monsterAttacks() {
+  currentCharacter.hp -= currentMonster.attack;
+  alert(
+    `The ${currentMonster.name} attacked! You took ${currentMonster.attack} points of damage!`
+  );
+  $("#characterInfo")[0].innerHTML = characterTable;
+  displayCharacterInfo(currentCharacter);
+}
+
+function isPlayerDead() {
+  if (currentCharacter.hp <= 0) {
+    alert("You died!");
+    //set up scoring
+  }
 }
