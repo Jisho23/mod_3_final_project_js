@@ -111,7 +111,6 @@ function highScore() {
 }
 
 function clearScreen() {
-  $("battleColumn")[0].innerHTML = "";
   $("#battleArea")[0].innerHTML = "";
   $("#monsterInfo")[0].innerHTML = "";
 }

@@ -9,7 +9,13 @@ function hitCharacter(el) {
   el.className = "shake";
   setTimeout(function() {
     $("#characterInfo")[0].innerHTML = characterTable;
+    currentCharacter.hp -= currentMonster.attack;
     displayCharacterInfo(currentCharacter);
+    if (isPlayerDead()) {
+      textBox.innerHTML = "";
+      showRandomText("You died!", 0);
+      highScore();
+    }
   }, 500);
   toggler();
 }

@@ -74,7 +74,6 @@ function getExpReward() {
 }
 
 function monsterAttacks() {
-  currentCharacter.hp -= currentMonster.attack;
   textBox.innerHTML += `<br>`;
   showTextDamage(
     `The ${currentMonster.name} attacked! You took ${currentMonster.attack} points of damage!`,
