@@ -4,10 +4,10 @@ function battle() {
 
 function renderBattleOptions() {
   $("#battleArea")[0].innerHTML = `
-  <button type="button" name="button" class='action' value='attack'>Attack</button>
-  <button type="button" name="button" class='action' value='ability'>Use Ability</button>
-  <button type="button" name="button" class='action' value='runAway'>Run away!</button>`;
-  let buttons = $(".action");
+  <button type="button" name="button" class='button is-small' value='attack'>Attack</button>
+  <button type="button" name="button" class='button is-small' value='ability'>Use Ability</button>
+  <button type="button" name="button" class='button is-small' value='runAway'>Run away!</button>`;
+  let buttons = $(".button");
   buttons = [...buttons];
   buttons.forEach(function(button) {
     button.addEventListener("click", function(event) {
@@ -39,11 +39,11 @@ function renderAbility() {
   $("#battleArea")[0].innerHTML = "";
   let abilitiesHTML = [];
   currentCharacter.abilities.forEach(function(ability) {
-    let button = `<button type="button" name="button" class="ability" value="${ability.name}">${ability.name}</button>`;
+    let button = `<button type="button" name="button" class="button is-small" value="${ability.name}">${ability.name}</button>`;
     abilitiesHTML.push(button);
   });
   $("#battleArea")[0].innerHTML = abilitiesHTML.join("");
-  let buttons = $(".ability");
+  let buttons = $(".button");
   buttons = [...buttons];
   buttons.forEach(function(button) {
     button.addEventListener("click", function(ev) {
@@ -64,7 +64,6 @@ function performAbility(value) {
     currentCharacter.pp -= ability.cost;
     currentCharacter.hp += ability.recover;
     displayMonster(currentMonster);
-    $("#characterInfo")[0].innerHTML = characterTable;
     displayCharacterInfo(currentCharacter);
     if (ability.damage > 0) {
       alert(
@@ -90,31 +89,50 @@ function runAway() {
 }
 
 function update() {
-  if (currentMonster.hp <= 0) {
-    alert(
-      `You defeated the ${currentMonster.name}! You gained ${currentMonster.exp} experience points!`
-    );
-    pickAMonster();
-    renderBattleOptions();
-    alert(`Here comes a ${currentMonster.name}!`);
-  } else {
-    monsterAttacks();
-    renderBattleOptions();
-  }
-}
-
-function monsterAttacks() {
-  currentCharacter.hp -= currentMonster.attack;
-  alert(
-    `The ${currentMonster.name} attacked! You took ${currentMonster.attack} points of damage!`
-  );
-  $("#characterInfo")[0].innerHTML = characterTable;
-  displayCharacterInfo(currentCharacter);
-}
-
-function isPlayerDead() {
-  if (currentCharacter.hp <= 0) {
+  isMonsterDead();
+  if (isPlayerDead()) {
     alert("You died!");
-    //set up scoring
+    highScore();
   }
+}
+
+function highScore() {
+  clearScreen();
+  renderHighScoreForm();
+}
+
+function clearScreen() {
+  $("#battleArea")[0].innerHTML = "";
+  $("#monsterInfo")[0].innerHTML = "";
+}
+
+function renderHighScoreForm() {
+  $("#highscore-form")[0].innerHTML = `<h3> Enter your Name</h3>
+  <form class='' id='enter-name' method='post'>
+  <input type='hidden' id='score' name='score' value=${currentCharacter.exp}>
+  <input type='text' id='scoreName' name='name'>
+  <input type='submit' value='submit' name='submit score'>`;
+
+  $("#highscore-form")[0].addEventListener("submit", function(event) {
+    event.preventDefault();
+    postScore();
+  });
+}
+
+function postScore() {
+  let body = {
+    name: $("#scoreName").val(),
+    score: parseInt($("#score").val())
+  };
+
+  let header = {
+    "Content-Type": "application/json"
+  };
+  fetch(localHostHighScore, {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: header
+  })
+    .then(res => res.json())
+    .then(json => console.log(json));
 }

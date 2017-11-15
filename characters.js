@@ -11,6 +11,7 @@ const Character = (() => {
       this.pp = json.pp;
       this.attack = json.attack;
       this.abilities = json.abilities;
+      this.exp = 0;
       characters.push(this);
     }
     static all() {
@@ -32,10 +33,12 @@ function populateCharacterSelect() {
 }
 
 function displayCharacterInfo(characterChoice) {
+  $("#characterInfo")[0].innerHTML = characterTable;
   $("#name")[0].innerHTML = `Character Class: ${characterChoice.name}`;
   $("#hp")[0].innerHTML = `Max HP: ${characterChoice.hp} `;
   $("#PP")[0].innerHTML = `Max PP: ${characterChoice.pp}`;
   $("#attack")[0].innerHTML = `Attack Power: ${characterChoice.attack}`;
+  $("#exp")[0].innerHTML = `Exp: ${characterChoice.exp}`;
   $(
     "#characterInfo"
   )[0].innerHTML += `<h4>Abilities</h4><ul id='abilities'></ul>`;
@@ -46,5 +49,13 @@ function displayCharacterInfo(characterChoice) {
     });
   } else {
     $("#abilities")[0].innerHTML = `<li> None ;_; </li>`;
+  }
+}
+
+function isPlayerDead() {
+  if (currentCharacter.hp <= 0) {
+    return true;
+  } else {
+    return false;
   }
 }
