@@ -37,7 +37,7 @@ function displayCharacterInfo(characterChoice) {
   $("#characterInfo")[0].innerHTML = characterTable;
   $(
     "#characterImage"
-  )[0].innerHTML = `<img src='${characterChoice.image}' height="100"></img>`;
+  )[0].innerHTML = `<img src='${characterChoice.image}' id='characterImage' height="100"></img>`;
   $("#name")[0].innerHTML = `Character Class: ${characterChoice.name}`;
   $("#hp")[0].innerHTML = `Max HP: ${characterChoice.hp} `;
   $("#PP")[0].innerHTML = `Max PP: ${characterChoice.pp}`;

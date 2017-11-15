@@ -20,6 +20,7 @@ function performAction(value) {
   if (value === "attack") {
     currentMonster.hp -= currentCharacter.attack;
     displayMonster(currentMonster);
+    getHit($("#monsterImage")[0]);
     alert(
       `You attacked ${currentMonster.name}! It took ${currentCharacter.attack} points of damage!`
     );
@@ -63,6 +64,7 @@ function performAbility(value) {
     currentMonster.hp -= ability.damage;
     currentCharacter.pp -= ability.cost;
     currentCharacter.hp += ability.recover;
+    getHit($("#monsterImage")[0]);
     displayMonster(currentMonster);
     displayCharacterInfo(currentCharacter);
     if (ability.damage > 0) {
