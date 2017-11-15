@@ -6,6 +6,14 @@ td {
   border-collapse: separate;
 }*/
 
+.text_box {
+  width: 500px;
+  border: 5px solid black;
+  padding: 25px;
+  margin: 25px;
+  background-color: black;
+  color: white;
+}
 .shake {
   /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.5s;

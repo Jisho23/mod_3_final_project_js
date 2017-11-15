@@ -27,3 +27,5 @@ const characterTable = `<h3>Character Info:</h3><div id='characterImage'></div><
     <td id='exp'></td>
   </table>
 </table>`;
+
+let textBox = $("#textArea")[0];
