@@ -44,6 +44,7 @@ const displayCharacterInfo = function(characterChoice) {
   $("#PP")[0].innerHTML = `PP: ${characterChoice.pp}`;
   $("#attack")[0].innerHTML = `Attack Power: ${characterChoice.attack}`;
   $("#exp")[0].innerHTML = `Exp: ${characterChoice.exp}`;
+  $("#abilityArea")[0].innerHTML = "";
   $(
     "#abilityArea"
   )[0].innerHTML += `<h4 has-text-weight-semibold>Abilities</h4><ul id='abilities'></ul>`;

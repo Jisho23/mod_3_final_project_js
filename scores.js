@@ -1,8 +1,9 @@
 const renderHighScoreForm = function() {
-  $("#highscore-form")[0].innerHTML = `<h3> Enter your Name</h3>
+  $("#highscore-form")[0].innerHTML = `
   <form class='form' id='enter-name' method='post'>
   <input type='hidden' id='score' name='score' value=${currentCharacter.exp}>
   <div class="control has-icons-left">
+  <div class='label'>Please input your name</div>
   <input class= 'input is-success' placeholder='your name' type='text' id='scoreName' name='name'>
     </div>
   <input class='button is-sucess'type='submit' value='submit' name='submit score'>`;
@@ -34,7 +35,7 @@ const postScore = function() {
 };
 
 const getHighScores = function() {
-  fetch(localHostHighScore)
+  fetch(herokuHighScores)
     .then(resp => resp.json())
     .then(function(json) {
       json.forEach(function(score) {
