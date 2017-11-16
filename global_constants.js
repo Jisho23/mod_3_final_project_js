@@ -9,6 +9,15 @@ const herokuHighScores =
   "https://cryptic-inlet-42078.herokuapp.com/api/v1/highscores";
 const test = "";
 let monstersFaced = 0;
+const boss = {
+  name: "Actual John Cena",
+  hp: 40,
+  attack: 5,
+  exp: 20,
+  image:
+    "http://shop.wwe.com/on/demandware.static/-/Sites/default/dw32c23792/images/slot/landing/superstar-landing/Superstar-Category_Superstar_562x408_johncena-2017.png"
+};
+
 const characterTable = `<h3>Character Info:</h3><div id='characterImage'></div><table class='table is-narrow is-bordered' id='characterDisplay'>
 <td>
   <table id='characterStatTable'>

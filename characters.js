@@ -66,11 +66,16 @@ function isPlayerDead() {
 }
 
 const levelUp = function() {
-  currentCharacter = initialCharacter;
-  currentCharacter.attack += 1;
-  currentCharacter.hp += 3;
-  currentCharacter.level += 1;
+  initialCharacter.attack += 1;
+  initialCharacter.hp += 3;
+  initialCharacter.level += 1;
+  initialCharacter.pp += 1;
+  Object.assign(currentCharacter, initialCharacter);
   displayCharacterInfo(currentCharacter);
   textBox.innerHTML = "";
-  levelUpText(`You have progressed to level ${currentCharacter.level}!`, 0);
+  battleTextScroll(
+    `You have progressed to level ${currentCharacter.level}!`,
+    0,
+    finishLevelUp
+  );
 };

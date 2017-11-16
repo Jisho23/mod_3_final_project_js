@@ -20,9 +20,10 @@ function performAction(value) {
     }
     displayMonster(currentMonster);
     textBox.innerHTML = "";
-    showTextHit(
+    battleTextScroll(
       `You attacked the ${currentMonster.name}! It took ${currentCharacter.attack} points of damage!`,
-      0
+      0,
+      getHit
     );
   } else if (value === "ability") {
     if (currentCharacter.abilities.length > 0) {
@@ -59,7 +60,7 @@ function performAbility(value) {
   });
   if (currentCharacter.pp < ability.cost) {
     textBox.innerHTML += `<br>`;
-    showRandomText(
+    battleTextScroll(
       "The spell fizzles because you don't have enough ability power!",
       0
     );
@@ -82,27 +83,31 @@ function performAbility(value) {
     displayCharacterInfo(currentCharacter);
     if (ability.damage > 0 && ability.recover > 0) {
       textBox.innerHTML = "";
-      showTextHit(
+      battleTextScroll(
         `You used ${ability.name} on the ${currentMonster.name} and recovered ${ability.recover} hp! It took ${ability.damage} points of damage!`,
-        0
+        0,
+        getHit
       );
     } else if (ability.damage > 0 && ability.recover < 0) {
       textBox.innerHTML = "";
-      showTextHit(
+      battleTextScroll(
         `You used ${ability.name} on the ${currentMonster.name}, but it cost ${ability.recover} hp! It took ${ability.damage} points of damage!`,
-        0
+        0,
+        getHit
       );
     } else if (ability.damage > 0) {
       textBox.innerHTML = "";
-      showTextHit(
+      battleTextScroll(
         `You used ${ability.name} on the ${currentMonster.name}! It took ${ability.damage} points of damage!`,
-        0
+        0,
+        getHit
       );
     } else {
       textBox.innerHTML = "";
-      showTextHit(
+      battleTextScroll(
         `You used ${ability.name} on yourself! You recovered ${ability.recover} hit points!`,
-        0
+        0,
+        getHit
       );
     }
   }
@@ -112,9 +117,9 @@ function runAway() {
   textBox.innerHTML = "";
   let number = Math.floor(Math.random() * 5);
   if (number === 4) {
-    showTextRunAway("You failed to run away!", 0);
+    battleTextScroll("You failed to run away!", 0, finishRunning);
   } else {
-    showTextRunAway("You managed to escape!", 0);
+    battleTextScroll("You managed to escape!", 0, finishRunning);
   }
 }
 

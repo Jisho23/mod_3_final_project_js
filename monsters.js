@@ -33,6 +33,9 @@ function pickAMonster() {
   let randomNumber = Math.floor(Math.random() * Monster.all().length);
   let monster = Object.assign({}, Monster.all()[randomNumber]);
   currentMonster = monster;
+  if (monstersFaced % 37 === 0 && monstersFaced !== 0) {
+    Object.assign(currentMonster, boss);
+  }
   displayMonster(currentMonster);
   monstersFaced += 1;
 }
@@ -74,24 +77,21 @@ function getExpReward() {
     levelUp();
   } else {
     displayCharacterInfo(currentCharacter);
-    pickAMonster();
-    renderBattleOptions();
-    textBox.innerHTML = "";
-    showRandomText(`A ${currentMonster.name} draws near!`, 0);
-    toggler();
+    finishLevelUp();
   }
 }
 
 function monsterAttacks() {
   textBox.innerHTML += `<br>`;
-  showTextDamage(
+  battleTextScroll(
     `The ${currentMonster.name} attacked! You took ${currentMonster.attack} points of damage!`,
-    0
+    0,
+    hitCharacter
   );
 }
 
 function difficultyUp() {
-  if (monstersFaced % 5 === 0 && monstersFaced !== 0) {
+  if (monstersFaced % 9 === 0 && monstersFaced !== 0) {
     Monster.all().forEach(function(monster) {
       monster.hp += 2;
       monster.attack += 1;

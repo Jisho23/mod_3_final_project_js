@@ -1,98 +1,59 @@
-function getHit(el) {
-  el.className = "shake";
+function getHit() {
+  $("#monsterImage")[0].className = "shake";
   setTimeout(function() {
     update();
   }, 500);
 }
 
-function hitCharacter(el) {
-  el.className = "shake";
+function hitCharacter() {
+  $("#characterImage")[0].className = "shake";
   setTimeout(function() {
     $("#characterInfo")[0].innerHTML = characterTable;
     currentCharacter.hp -= currentMonster.attack;
     displayCharacterInfo(currentCharacter);
     if (isPlayerDead()) {
       textBox.innerHTML = "";
-      showRandomText("You died!", 0);
+      battleTextScroll("You died!", 0);
       highScore();
     }
   }, 500);
   toggler();
 }
 
-const showTextHit = function(message, index) {
+const battleTextScroll = function(message, index, callback) {
   if (index < message.length) {
     textBox.innerHTML += message[index++];
     setTimeout(function() {
-      showTextHit(message, index);
+      battleTextScroll(message, index, callback);
       if (index === message.length) {
         setTimeout(function() {
-          getHit($("#monsterImage")[0]);
+          callback(message);
         }, 500);
       }
     }, 30);
   }
 };
 
-const showTextDamage = function(message, index) {
-  if (index < message.length) {
-    textBox.innerHTML += message[index++];
-    setTimeout(function() {
-      showTextDamage(message, index);
-      if (index === message.length) {
-        setTimeout(function() {
-          hitCharacter($("#characterImage")[0]);
-        }, 500);
-      }
-    }, 30);
+function finishRunning(message) {
+  if (message === "You failed to run away!") {
+    update();
+  } else {
+    pickAMonster();
+    textBox.innerHTML += `<br>`;
+    battleTextScroll(`A ${currentMonster.name} draws near!`, 0);
+    toggler();
   }
-};
+}
 
-const showTextRunAway = function(message, index) {
-  if (index < message.length) {
-    textBox.innerHTML += message[index++];
-    setTimeout(function() {
-      showTextRunAway(message, index);
-      if (index === message.length) {
-        if (message === "You failed to run away!") {
-          update();
-        } else {
-          pickAMonster();
-          textBox.innerHTML += `<br>`;
-          showRandomText(`A ${currentMonster.name} draws near!`, 0);
-          toggler();
-        }
-      }
-    }, 30);
-  }
-};
-
-const showRandomText = function(message, index) {
-  if (index < message.length) {
-    textBox.innerHTML += message[index++];
-    setTimeout(function() {
-      showRandomText(message, index);
-    }, 30);
-  }
-};
-
-const levelUpText = function(message, index) {
-  if (index < message.length) {
-    textBox.innerHTML += message[index++];
-    setTimeout(function() {
-      levelUpText(message, index);
-      if (index === message.length) {
-        setTimeout(function() {
-          pickAMonster();
-          renderBattleOptions();
-          textBox.innerHTML += `<br>`;
-          showRandomText(`A ${currentMonster.name} draws near!`, 0);
-          toggler();
-        }, 750);
-      }
-    }, 30);
-  }
-};
+function finishLevelUp() {
+  setTimeout(function() {
+    pickAMonster();
+    renderBattleOptions();
+    textBox.innerHTML += `<br>`;
+    battleTextScroll(`A ${currentMonster.name} draws near!`, 0);
+    toggler();
+  }, 750);
+}
 
 const showDefeatedText = function(message, index) {
   if (index < message.length) {

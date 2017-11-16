@@ -15,6 +15,6 @@ function startGame(event) {
     "#battleColumn"
   )[0].innerHTML += `<div class='text_box' id='textArea'></div>`;
   textBox = $("#textArea")[0];
-  showRandomText(`A ${currentMonster.name} draws near!`, 0);
+  battleTextScroll(`A ${currentMonster.name} draws near!`, 0);
   battle();
 }
