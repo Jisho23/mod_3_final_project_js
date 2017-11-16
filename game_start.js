@@ -6,7 +6,7 @@ function startGame(event) {
     return character.id === characterId;
   });
   initialCharacter = characterChoice;
-  currentCharacter = characterChoice;
+  Object.assign(currentCharacter, characterChoice);
   displayCharacterInfo(characterChoice);
   pickAMonster();
   $("#characterSelectForm")[0].innerHTML = "";

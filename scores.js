@@ -29,8 +29,8 @@ function postScore() {
     headers: header
   })
     .then(res => res.json())
-    .then(json => console.log(json));
-  location.reload();
+    .then(json => console.log(json))
+    .then(json => location.reload());
 }
 
 function getHighScores() {

@@ -74,15 +74,24 @@ function performAbility(value) {
     }
     displayMonster(currentMonster);
     displayCharacterInfo(currentCharacter);
-    if (ability.damage > 0) {
+    if (ability.damage > 0 && ability.recover > 0) {
+      textBox.innerHTML = "";
+      showTextHit(
+        `You used ${ability.name} on the ${currentMonster.name} and recovered ${ability.recover} hp! It took ${ability.damage} points of damage!`,
+        0
+      );
+    } else if (ability.damage > 0 && ability.recover < 0) {
+      textBox.innerHTML = "";
+      showTextHit(
+        `You used ${ability.name} on the ${currentMonster.name}, but it cost ${ability.recover} hp! It took ${ability.damage} points of damage!`,
+        0
+      );
+    } else if (ability.damage > 0) {
       textBox.innerHTML = "";
       showTextHit(
         `You used ${ability.name} on the ${currentMonster.name}! It took ${ability.damage} points of damage!`,
         0
       );
-    }
-    if (ability.recover > 0) {
-      alert(`You recovered ${ability.recover} hit points!`);
     }
   }
 }
