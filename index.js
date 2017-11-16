@@ -18,3 +18,13 @@ $("#battleColumn")[0].addEventListener("click", function(event) {
     performAction(event.target.value);
   }
 });
+
+$("#startPauseAudio")[0].addEventListener("click", function(event) {
+  if ($("#startPauseAudio")[0].data === "on") {
+    audio.battleTheme.pause();
+    $("#startPauseAudio")[0].data = "";
+  } else {
+    audio.battleTheme.play();
+    $("#startPauseAudio")[0].data = "on";
+  }
+});

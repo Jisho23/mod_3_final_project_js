@@ -1,4 +1,5 @@
 const getHit = function() {
+  audio.hit.play();
   $("#monsterImage")[0].className = "shake";
   setTimeout(function() {
     isMonsterDead();
@@ -6,6 +7,7 @@ const getHit = function() {
 };
 
 const hitCharacter = function() {
+  audio.hit.play();
   $("#characterImage")[0].className = "shake";
   setTimeout(function() {
     $("#characterInfo")[0].innerHTML = characterTable;

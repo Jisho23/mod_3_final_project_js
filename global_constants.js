@@ -47,3 +47,15 @@ const toggler = function() {
     $("#battleColumn")[0].data = "toggled";
   }
 };
+
+const audio = {
+  battleTheme: new Audio("05.mp3"),
+  bossTheme: new Audio("24.mp3"),
+  gameOver: new Audio("gameOver.mp3"),
+  hit: new Audio("hit.mp3"),
+  pauseAllAudio: function() {
+    this.battleTheme.pause();
+    this.bossTheme.pause();
+    this.gameOver.pause();
+  }
+};

@@ -35,6 +35,8 @@ const pickAMonster = function() {
   currentMonster = monster;
   if (monstersFaced % 37 === 0 && monstersFaced !== 0) {
     Object.assign(currentMonster, boss);
+    audio.battleTheme.pause();
+    audio.bossTheme.play();
   }
   displayMonster(currentMonster);
   monstersFaced += 1;

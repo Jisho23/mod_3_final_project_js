@@ -62,6 +62,8 @@ const displayCharacterInfo = function(characterChoice) {
 
 const isPlayerDead = function() {
   if (currentCharacter.hp <= 0) {
+    audio.pauseAllAudio();
+    audio.gameOver.play();
     return true;
   } else {
     return false;
