@@ -44,8 +44,8 @@ const pickAMonster = function() {
 
 const displayMonster = function(monster) {
   let monsterInfo = $("#monsterInfo")[0];
-  monsterInfo.innerHTML = `<div class= ""><h3>You are facing the...</h3><table class= "table is-narrow is-bordered">
-    <img src=${monster.image} height="100" id='monsterImage' class='image is-1x1'>
+  monsterInfo.innerHTML = `<div class= ""><h3>You are facing the...</h3><table class= "table is-narrow is-bordered" id='monsterTable'>
+    <img src=${monster.image} height="100" id='monsterImage' class='img'>
     <td>
     <table>
     <tr id='mName'><td>${monster.name}</td></tr>

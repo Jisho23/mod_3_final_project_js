@@ -6,10 +6,30 @@ td {
   border-collapse: separate;
 }*/
 
+#characterDisplay {
+  background-color: black;
+  color: white;
+}
+
+#monsterTable {
+  background-color: black;
+  color: white;
+}
+
 .box {
   background-color: royalblue;
   border: 1px solid black;
   colour: white;
+}
+
+#characterImage {
+  height: 60%;
+  width: 60%;
+}
+
+#monsterImage {
+  height: 60%;
+  width: 60%;
 }
 
 .text_box {
@@ -25,6 +45,8 @@ td {
   animation: shake 0.5s;
   /* When the animation is finished, start again */
   animation-iteration-count: 1;
+  height: 60%;
+  width: 60%;
 }
 
 @keyframes shake {

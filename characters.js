@@ -38,7 +38,7 @@ const displayCharacterInfo = function(characterChoice) {
   $("#characterInfo")[0].innerHTML = characterTable;
   $(
     "#characterImage"
-  )[0].innerHTML = `<img src='${characterChoice.image}' id='characterImage'></img>`;
+  )[0].innerHTML = `<img src='${characterChoice.image}' id='characterImage' class='img'></img>`;
   $("#name")[0].innerHTML = `Character Class: ${characterChoice.name}`;
   $("#hp")[0].innerHTML = `HP: ${characterChoice.hp} `;
   $("#PP")[0].innerHTML = `PP: ${characterChoice.pp}`;

@@ -54,17 +54,26 @@ const renderAbility = function() {
     let button = ` <button type="button" name="abilityButton" class="${returnRandomButton()}" value="${ability.name}">${ability.name}</button> `;
     abilitiesHTML.push(button);
   });
+  abilitiesHTML.push(
+    `<button type="button" name="abilityButton" value="back" id="back" class="${returnRandomButton()}">Back</button>`
+  );
   $("#battleArea")[0].innerHTML = abilitiesHTML.join("");
   let buttons = $(".button");
   buttons = [...buttons];
   buttons.forEach(function(button) {
     button.addEventListener("click", function(ev) {
-      performAbility(ev.target.value);
+      if (ev.target.value === "back") {
+        renderBattleOptions();
+        toggler();
+      } else {
+        performAbility(ev.target.value);
+      }
     });
   });
 };
 
 const performAbility = function(value) {
+  renderBattleOptions();
   let ability = currentCharacter.abilities.find(function(ability) {
     return ability.name === value;
   });
