@@ -7,6 +7,20 @@ const renderBattleOptions = function() {
   buttons = [...buttons];
 };
 
+const buttonTypes = {
+  0: "button is-small is-link",
+  1: "button is-small is-primary",
+  2: "button is-small is-info",
+  3: "button is-small is-success",
+  4: "button is-small is-warning",
+  5: "button is-small is-danger"
+};
+
+const returnRandomButton = function() {
+  let randomNum = Math.floor(Math.random() * 6);
+  return buttonTypes[randomNum];
+};
+
 const performAction = function(value) {
   toggler();
   if (value === "attack") {
@@ -37,7 +51,7 @@ const renderAbility = function() {
   $("#battleArea")[0].innerHTML = "";
   let abilitiesHTML = [];
   currentCharacter.abilities.forEach(function(ability) {
-    let button = `<button type="button" name="abilityButton" class="button is-small is-link" value="${ability.name}">${ability.name}</button>`;
+    let button = ` <button type="button" name="abilityButton" class="${returnRandomButton()}" value="${ability.name}">${ability.name}</button> `;
     abilitiesHTML.push(button);
   });
   $("#battleArea")[0].innerHTML = abilitiesHTML.join("");

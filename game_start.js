@@ -12,7 +12,7 @@ const startGame = function(event) {
   $("#characterSelectForm")[0].innerHTML = "";
   $("#highScoreArea")[0].innerHTML = "";
   $(
-    "#battleColumn"
+    "#textBoxArea"
   )[0].innerHTML += `<div class='text_box' id='textArea'></div>`;
   textBox = $("#textArea")[0];
   battleTextScroll(`A ${currentMonster.name} draws near!`, 0);

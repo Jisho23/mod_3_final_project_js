@@ -19,7 +19,7 @@ const Monster = (() => {
 })();
 
 const populateMonsters = function() {
-  fetch(localHostMonsters)
+  fetch(herokuMonsters)
     .then(res => res.json())
     .then(function(json) {
       json.forEach(function(monster) {

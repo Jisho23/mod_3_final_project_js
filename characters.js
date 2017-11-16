@@ -23,7 +23,7 @@ const Character = (() => {
 })();
 
 const populateCharacterSelect = function() {
-  fetch(localHostCharacters)
+  fetch(herokuCharacters)
     .then(response => response.json())
     .then(function(json) {
       json.forEach(function(character) {
@@ -45,15 +45,17 @@ const displayCharacterInfo = function(characterChoice) {
   $("#attack")[0].innerHTML = `Attack Power: ${characterChoice.attack}`;
   $("#exp")[0].innerHTML = `Exp: ${characterChoice.exp}`;
   $(
-    "#characterInfo"
-  )[0].innerHTML += `<h4>Abilities</h4><ul id='abilities'></ul>`;
+    "#abilityArea"
+  )[0].innerHTML += `<h4 has-text-weight-semibold>Abilities</h4><ul id='abilities'></ul>`;
   let abilities = characterChoice.abilities;
   if (abilities.length > 0) {
     abilities.forEach(function(ability) {
-      $("#abilities")[0].innerHTML += `<li>${ability.name}</li>`;
+      $(
+        "#abilities"
+      )[0].innerHTML += `<div class='box has-text-white'><li>${ability.name}: ${ability.damage} damage</li></div>`;
     });
   } else {
-    $("#abilities")[0].innerHTML = `<li> None ;_; </li>`;
+    $("#abilities")[0].innerHTML = `<li> None</li>`;
   }
 };
 

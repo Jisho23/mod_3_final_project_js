@@ -23,7 +23,7 @@ const postScore = function() {
   let header = {
     "Content-Type": "application/json"
   };
-  fetch(localHostHighScore, {
+  fetch(herokuHighScores, {
     method: "POST",
     body: JSON.stringify(body),
     headers: header
