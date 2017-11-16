@@ -11,9 +11,9 @@ const test = "";
 let monstersFaced = 0;
 const boss = {
   name: "Actual John Cena",
-  hp: 40,
-  attack: 5,
-  exp: 20,
+  hp: 60,
+  attack: 8,
+  exp: 100,
   image:
     "http://shop.wwe.com/on/demandware.static/-/Sites/default/dw32c23792/images/slot/landing/superstar-landing/Superstar-Category_Superstar_562x408_johncena-2017.png"
 };

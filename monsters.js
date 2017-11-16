@@ -97,7 +97,7 @@ const difficultyUp = function() {
     Monster.all().forEach(function(monster) {
       monster.hp += 2;
       monster.attack += 1;
-      monster.exp += 1;
+      monster.exp += monster.exp;
     });
   }
 };
