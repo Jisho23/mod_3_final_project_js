@@ -29,10 +29,12 @@ function populateMonsters() {
 }
 
 function pickAMonster() {
+  difficultyUp();
   let randomNumber = Math.floor(Math.random() * Monster.all().length);
   let monster = Object.assign({}, Monster.all()[randomNumber]);
   currentMonster = monster;
   displayMonster(currentMonster);
+  monstersFaced += 1;
 }
 
 function displayMonster(monster) {
@@ -86,4 +88,14 @@ function monsterAttacks() {
     `The ${currentMonster.name} attacked! You took ${currentMonster.attack} points of damage!`,
     0
   );
+}
+
+function difficultyUp() {
+  if (monstersFaced % 5 === 0 && monstersFaced !== 0) {
+    Monster.all().forEach(function(monster) {
+      monster.hp += 2;
+      monster.attack += 1;
+      monster.exp += 1;
+    });
+  }
 }
