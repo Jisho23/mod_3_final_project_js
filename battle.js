@@ -1,17 +1,13 @@
-function battle() {
-  renderBattleOptions();
-}
-
-function renderBattleOptions() {
+const renderBattleOptions = function() {
   $("#battleArea")[0].innerHTML = `
   <button type="button" name="button" class='button is-small is-primary' value='attack'>Attack</button>
   <button type="button" name="button" class='button is-small is-warning' value='ability'>Use Ability</button>
   <button type="button" name="button" class='button is-small is-danger' value='runAway'>Run away!</button>`;
   let buttons = $(".button");
   buttons = [...buttons];
-}
+};
 
-function performAction(value) {
+const performAction = function(value) {
   toggler();
   if (value === "attack") {
     currentMonster.hp -= currentCharacter.attack;
@@ -35,9 +31,9 @@ function performAction(value) {
   } else if (value === "runAway") {
     runAway();
   }
-}
+};
 
-function renderAbility() {
+const renderAbility = function() {
   $("#battleArea")[0].innerHTML = "";
   let abilitiesHTML = [];
   currentCharacter.abilities.forEach(function(ability) {
@@ -52,9 +48,9 @@ function renderAbility() {
       performAbility(ev.target.value);
     });
   });
-}
+};
 
-function performAbility(value) {
+const performAbility = function(value) {
   let ability = currentCharacter.abilities.find(function(ability) {
     return ability.name === value;
   });
@@ -111,9 +107,9 @@ function performAbility(value) {
       );
     }
   }
-}
+};
 
-function runAway() {
+const runAway = function() {
   textBox.innerHTML = "";
   let number = Math.floor(Math.random() * 5);
   if (number === 4) {
@@ -121,18 +117,9 @@ function runAway() {
   } else {
     battleTextScroll("You managed to escape!", 0, finishRunning);
   }
-}
+};
 
-function update() {
-  isMonsterDead();
-}
-
-function highScore() {
-  clearScreen();
-  renderHighScoreForm();
-}
-
-function clearScreen() {
+const clearScreen = function() {
   $("#battleArea")[0].innerHTML = "";
   $("#monsterInfo")[0].innerHTML = "";
-}
+};

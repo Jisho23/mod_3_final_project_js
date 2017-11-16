@@ -40,7 +40,7 @@ const characterTable = `<h3>Character Info:</h3><div id='characterImage'></div><
 
 let textBox = "";
 
-let toggler = function() {
+const toggler = function() {
   if ($("#battleColumn")[0].data === "toggled") {
     $("#battleColumn")[0].data = "";
   } else {

@@ -1,4 +1,4 @@
-function startGame(event) {
+const startGame = function(event) {
   event.preventDefault();
   let characterInfo = $("#characterInfo")[0];
   let characterId = parseInt($("#characterDropdown")[0].value);
@@ -16,5 +16,5 @@ function startGame(event) {
   )[0].innerHTML += `<div class='text_box' id='textArea'></div>`;
   textBox = $("#textArea")[0];
   battleTextScroll(`A ${currentMonster.name} draws near!`, 0);
-  battle();
-}
+  renderBattleOptions();
+};

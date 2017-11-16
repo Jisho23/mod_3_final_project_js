@@ -18,7 +18,7 @@ const Monster = (() => {
   };
 })();
 
-function populateMonsters() {
+const populateMonsters = function() {
   fetch(localHostMonsters)
     .then(res => res.json())
     .then(function(json) {
@@ -26,9 +26,9 @@ function populateMonsters() {
         new Monster(monster);
       });
     });
-}
+};
 
-function pickAMonster() {
+const pickAMonster = function() {
   difficultyUp();
   let randomNumber = Math.floor(Math.random() * Monster.all().length);
   let monster = Object.assign({}, Monster.all()[randomNumber]);
@@ -38,9 +38,9 @@ function pickAMonster() {
   }
   displayMonster(currentMonster);
   monstersFaced += 1;
-}
+};
 
-function displayMonster(monster) {
+const displayMonster = function(monster) {
   let monsterInfo = $("#monsterInfo")[0];
   monsterInfo.innerHTML = `<div class= ""><h3>You are facing the...</h3><table class= "table is-narrow is-bordered">
     <img src=${monster.image} height="100" id='monsterImage' class='image is-1x1'>
@@ -52,9 +52,9 @@ function displayMonster(monster) {
     </table>
     </td>
   </table></div>`;
-}
+};
 
-function isMonsterDead() {
+const isMonsterDead = function() {
   if (currentMonster.hp < 1) {
     textBox.innerHTML += `<br>`;
     showDefeatedText(
@@ -65,9 +65,9 @@ function isMonsterDead() {
     monsterAttacks();
     renderBattleOptions();
   }
-}
+};
 
-function getExpReward() {
+const getExpReward = function() {
   currentCharacter.exp += currentMonster.exp;
   $("#characterInfo")[0].innerHTML = characterTable;
   if (
@@ -79,18 +79,18 @@ function getExpReward() {
     displayCharacterInfo(currentCharacter);
     finishLevelUp();
   }
-}
+};
 
-function monsterAttacks() {
+const monsterAttacks = function() {
   textBox.innerHTML += `<br>`;
   battleTextScroll(
     `The ${currentMonster.name} attacked! You took ${currentMonster.attack} points of damage!`,
     0,
     hitCharacter
   );
-}
+};
 
-function difficultyUp() {
+const difficultyUp = function() {
   if (monstersFaced % 9 === 0 && monstersFaced !== 0) {
     Monster.all().forEach(function(monster) {
       monster.hp += 2;
@@ -98,4 +98,4 @@ function difficultyUp() {
       monster.exp += 1;
     });
   }
-}
+};

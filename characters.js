@@ -22,7 +22,7 @@ const Character = (() => {
   };
 })();
 
-function populateCharacterSelect() {
+const populateCharacterSelect = function() {
   fetch(localHostCharacters)
     .then(response => response.json())
     .then(function(json) {
@@ -32,9 +32,9 @@ function populateCharacterSelect() {
         let newCharacter = new Character(character);
       });
     });
-}
+};
 
-function displayCharacterInfo(characterChoice) {
+const displayCharacterInfo = function(characterChoice) {
   $("#characterInfo")[0].innerHTML = characterTable;
   $(
     "#characterImage"
@@ -55,24 +55,26 @@ function displayCharacterInfo(characterChoice) {
   } else {
     $("#abilities")[0].innerHTML = `<li> None ;_; </li>`;
   }
-}
+};
 
-function isPlayerDead() {
+const isPlayerDead = function() {
   if (currentCharacter.hp <= 0) {
     return true;
   } else {
     return false;
   }
-}
+};
 
 const levelUp = function() {
   initialCharacter.attack += 1;
   initialCharacter.hp += 3;
   initialCharacter.level += 1;
   initialCharacter.pp += 1;
+  initialCharacter.exp = currentCharacter.exp;
   Object.assign(currentCharacter, initialCharacter);
   displayCharacterInfo(currentCharacter);
   textBox.innerHTML = "";
+  $("#characterImage")[0].className = "celebrate";
   battleTextScroll(
     `You have progressed to level ${currentCharacter.level}!`,
     0,

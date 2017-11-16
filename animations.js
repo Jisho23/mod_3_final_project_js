@@ -1,11 +1,11 @@
-function getHit() {
+const getHit = function() {
   $("#monsterImage")[0].className = "shake";
   setTimeout(function() {
-    update();
+    isMonsterDead();
   }, 500);
-}
+};
 
-function hitCharacter() {
+const hitCharacter = function() {
   $("#characterImage")[0].className = "shake";
   setTimeout(function() {
     $("#characterInfo")[0].innerHTML = characterTable;
@@ -18,7 +18,7 @@ function hitCharacter() {
     }
   }, 500);
   toggler();
-}
+};
 
 const battleTextScroll = function(message, index, callback) {
   if (index < message.length) {
@@ -34,18 +34,18 @@ const battleTextScroll = function(message, index, callback) {
   }
 };
 
-function finishRunning(message) {
+const finishRunning = function(message) {
   if (message === "You failed to run away!") {
-    update();
+    isMonsterDead();
   } else {
     pickAMonster();
     textBox.innerHTML += `<br>`;
     battleTextScroll(`A ${currentMonster.name} draws near!`, 0);
     toggler();
   }
-}
+};
 
-function finishLevelUp() {
+const finishLevelUp = function() {
   setTimeout(function() {
     pickAMonster();
     renderBattleOptions();
@@ -53,7 +53,7 @@ function finishLevelUp() {
     battleTextScroll(`A ${currentMonster.name} draws near!`, 0);
     toggler();
   }, 750);
-}
+};
 
 const showDefeatedText = function(message, index) {
   if (index < message.length) {
@@ -63,7 +63,7 @@ const showDefeatedText = function(message, index) {
       if (index === message.length) {
         setTimeout(function() {
           getExpReward();
-        }, 1000);
+        }, 750);
       }
     }, 30);
   }

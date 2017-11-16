@@ -1,4 +1,4 @@
-function renderHighScoreForm() {
+const renderHighScoreForm = function() {
   $("#highscore-form")[0].innerHTML = `<h3> Enter your Name</h3>
   <form class='form' id='enter-name' method='post'>
   <input type='hidden' id='score' name='score' value=${currentCharacter.exp}>
@@ -12,9 +12,9 @@ function renderHighScoreForm() {
     postScore();
     $("#characterInfo")[0].innerHTML = "";
   });
-}
+};
 
-function postScore() {
+const postScore = function() {
   let body = {
     name: $("#scoreName").val(),
     score: parseInt($("#score").val())
@@ -31,9 +31,9 @@ function postScore() {
     .then(res => res.json())
     .then(json => console.log(json))
     .then(json => location.reload());
-}
+};
 
-function getHighScores() {
+const getHighScores = function() {
   fetch(localHostHighScore)
     .then(resp => resp.json())
     .then(function(json) {
@@ -41,9 +41,14 @@ function getHighScores() {
         createScoreOnTable(score);
       });
     });
-}
+};
 
-function createScoreOnTable(score) {
+const createScoreOnTable = function(score) {
   let newScore = `<tr class='tr'><td class='td'>${score.name} - ${score.score} points</td></tr>`;
   $("#highScoreTable")[0].innerHTML += newScore;
-}
+};
+
+const highScore = function() {
+  clearScreen();
+  renderHighScoreForm();
+};
