@@ -6,9 +6,10 @@ const renderHighScoreForm = function() {
   <div class='label'>Please input your name</div>
   <input class= 'input is-success' placeholder='your name' type='text' id='scoreName' name='name'>
     </div>
-  <input class='button is-sucess'type='submit' value='submit' name='submit score'>`;
+  <input class='button is-sucess'type='submit' id='scoreSubmit' value='submit' name='submit score'><br>`;
 
   $("#highscore-form")[0].addEventListener("submit", function(event) {
+    $("#scoreSubmit")[0].className = "button is-success is-loading";
     event.preventDefault();
     postScore();
     $("#characterInfo")[0].innerHTML = "";

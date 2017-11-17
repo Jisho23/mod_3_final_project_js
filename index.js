@@ -23,7 +23,7 @@ $("#battleColumn")[0].addEventListener("click", function(event) {
   $("#startPauseAudio")[0].addEventListener("click", function(event) {
     let masterAudio = audio.battleTheme;
     if ($("#startPauseAudio")[0].data === "on") {
-      masterAudio.pause();
+      audio.pauseAllAudio();
       $("#startPauseAudio")[0].data = "";
     } else {
       $("#startPauseAudio")[0].data = "on";

@@ -12,7 +12,7 @@ let monstersFaced = 0;
 const boss = {
   name: "Actual John Cena",
   hp: 60,
-  attack: 8,
+  attack: 5,
   exp: 100,
   image:
     "http://shop.wwe.com/on/demandware.static/-/Sites/default/dw32c23792/images/slot/landing/superstar-landing/Superstar-Category_Superstar_562x408_johncena-2017.png"
@@ -50,7 +50,7 @@ const toggler = function() {
 
 const audio = {
   battleTheme: new Audio("05.mp3"),
-  bossTheme: new Audio("24.mp3"),
+  bossTheme: new Audio("cena.mp3"),
   gameOver: new Audio("gameOver.mp3"),
   hit: new Audio("hit.mp3"),
   pauseAllAudio: function() {

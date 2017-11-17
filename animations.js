@@ -22,7 +22,7 @@ const hitCharacter = function() {
   toggler();
 };
 
-const battleTextScroll = function(message, index, callback) {
+const battleTextScroll = function(message, index, callback = function() {}) {
   if (index < message.length) {
     textBox.innerHTML += message[index++];
     setTimeout(function() {

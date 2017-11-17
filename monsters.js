@@ -33,7 +33,7 @@ const pickAMonster = function() {
   let randomNumber = Math.floor(Math.random() * Monster.all().length);
   let monster = Object.assign({}, Monster.all()[randomNumber]);
   currentMonster = monster;
-  if (monstersFaced % 37 === 0 && monstersFaced !== 0) {
+  if (monstersFaced % 23 === 0 && monstersFaced !== 0) {
     Object.assign(currentMonster, boss);
     audio.battleTheme.pause();
     audio.bossTheme.play();
@@ -93,11 +93,11 @@ const monsterAttacks = function() {
 };
 
 const difficultyUp = function() {
-  if (monstersFaced % 9 === 0 && monstersFaced !== 0) {
+  if (monstersFaced % 8 === 0 && monstersFaced !== 0) {
     Monster.all().forEach(function(monster) {
       monster.hp += 2;
       monster.attack += 1;
-      monster.exp += monster.exp;
+      monster.exp = Math.round(monster.exp * 1.5);
     });
   }
 };
