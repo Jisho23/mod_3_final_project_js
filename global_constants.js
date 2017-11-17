@@ -54,6 +54,7 @@ const audio = {
   gameOver: new Audio("gameOver.mp3"),
   hit: new Audio("hit.mp3"),
   pauseAllAudio: function() {
+    $("#startPauseAudio")[0].data = "";
     this.battleTheme.pause();
     this.bossTheme.pause();
     this.gameOver.pause();

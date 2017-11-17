@@ -15,8 +15,8 @@ const startGame = function(event) {
     "#textBoxArea"
   )[0].innerHTML += `<div class='text_box' id='textArea'></div>`;
   textBox = $("#textArea")[0];
+  $("#startPauseAudio")[0].click();
+  $("#startPauseAudio")[0].data = "on";
   battleTextScroll(`A ${currentMonster.name} draws near!`, 0);
   renderBattleOptions();
-  audio.battleTheme.play();
-  $("#startPauseAudio")[0].data = "on";
 };

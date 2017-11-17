@@ -19,12 +19,23 @@ $("#battleColumn")[0].addEventListener("click", function(event) {
   }
 });
 
-$("#startPauseAudio")[0].addEventListener("click", function(event) {
-  if ($("#startPauseAudio")[0].data === "on") {
-    audio.battleTheme.pause();
-    $("#startPauseAudio")[0].data = "";
-  } else {
-    audio.battleTheme.play();
-    $("#startPauseAudio")[0].data = "on";
-  }
-});
+(function() {
+  $("#startPauseAudio")[0].addEventListener("click", function(event) {
+    let masterAudio = audio.battleTheme;
+    if ($("#startPauseAudio")[0].data === "on") {
+      masterAudio.pause();
+      $("#startPauseAudio")[0].data = "";
+    } else {
+      $("#startPauseAudio")[0].data = "on";
+      masterAudio.play();
+      masterAudio.addEventListener(
+        "ended",
+        function() {
+          this.currentTime = 0;
+          this.play();
+        },
+        false
+      );
+    }
+  });
+})();
